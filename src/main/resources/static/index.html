@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Checker</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 24a11 11 0 1 1 22 0' fill='none' stroke='%232f6bff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M16 24l6-8' stroke='%2300b8a9' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="container">
+    <header class="header">
+        <h1>Internet Speed Checker</h1>
+        <p class="subtitle">Measure ping, jitter, download and upload speed</p>
+    </header>
+
+    <section class="tester">
+        <div class="gauge-wrap">
+            <svg class="gauge" viewBox="0 0 200 200" aria-hidden="true">
+                <path id="gauge-track" class="gauge-track" d=""/>
+                <path id="gauge-fill" class="gauge-fill" d=""/>
+                <g id="gauge-ticks" class="gauge-ticks"></g>
+            </svg>
+            <div class="gauge-readout">
+                <div id="gauge-value" class="gauge-value">0.00</div>
+                <div class="gauge-unit">Mbps</div>
+                <div id="phase" class="phase">Ready</div>
+            </div>
+        </div>
+
+        <button id="start-btn" class="start-btn" type="button">Start Test</button>
+        <div class="progress" aria-hidden="true"><div id="progress-bar" class="progress-bar"></div></div>
+    </section>
+
+    <section class="metrics">
+        <article class="metric" id="m-ping">
+            <h2>Ping</h2>
+            <p><span class="value" id="ping-value">–</span> <span class="unit">ms</span></p>
+        </article>
+        <article class="metric" id="m-jitter">
+            <h2>Jitter</h2>
+            <p><span class="value" id="jitter-value">–</span> <span class="unit">ms</span></p>
+        </article>
+        <article class="metric" id="m-download">
+            <h2>Download</h2>
+            <p><span class="value" id="download-value">–</span> <span class="unit">Mbps</span></p>
+        </article>
+        <article class="metric" id="m-upload">
+            <h2>Upload</h2>
+            <p><span class="value" id="upload-value">–</span> <span class="unit">Mbps</span></p>
+        </article>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+
+    <section class="panel">
+        <div class="panel-head">
+            <h2>Overall Stats</h2>
+        </div>
+        <div class="stats" id="stats">
+            <div><span class="label">Tests</span><span id="s-count">0</span></div>
+            <div><span class="label">Avg download</span><span id="s-down">–</span></div>
+            <div><span class="label">Avg upload</span><span id="s-up">–</span></div>
+            <div><span class="label">Avg ping</span><span id="s-ping">–</span></div>
+            <div><span class="label">Best download</span><span id="s-best-down">–</span></div>
+            <div><span class="label">Best ping</span><span id="s-best-ping">–</span></div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head">
+            <h2>History</h2>
+            <button id="clear-btn" class="link-btn" type="button">Clear all</button>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th class="num">Download</th>
+                    <th class="num">Upload</th>
+                    <th class="num">Ping</th>
+                    <th class="num">Jitter</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="history-body">
+                <tr><td colspan="6" class="empty">No tests yet</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="footer">
+        Speeds are measured between your browser and this server. Run the server on a remote host to measure your real internet connection.
+    </footer>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
